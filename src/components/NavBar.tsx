@@ -9,8 +9,8 @@ interface NavBarProps {
 
 const NavBar: FC<NavBarProps> = ({ }) => {
   return (
-    <nav className='border absolute top-0 w-screen flex items-center justify-center'>
-      <div className='container min-h-10 flex items-center justify-between p-4'>
+    <nav className='border-b absolute top-0 w-full flex items-center justify-center p-4'>
+      <div className='container min-h-10 flex items-center justify-between'>
         <div className='text-2xl font-bold '>
           TSV Billing
         </div>
@@ -20,7 +20,7 @@ const NavBar: FC<NavBarProps> = ({ }) => {
             Login
           </Link>
         </div>
-      </div>
+      </div>  
     </nav>
   )
 }
