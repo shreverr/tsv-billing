@@ -8,21 +8,17 @@ import { useState } from "react";
 
 export default function Home() {
   const [tableData, setTableData] = useState([])
-  const [billingDate, setBillingDate] = useState('')
+  const [billingDate, setBillingDate] = useState<Date>()
   const [dueDate, setDueDate] = useState('')
 
   const getTableData = (tableData: any) => {
     setTableData(tableData)
   }
 
-  const getBillingDate = (billingDate: any) => {
-    setBillingDate(billingDate)
-  }
-
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
     // console.log("submit");
-    console.log(billingDate);
+    console.log(billingDate, dueDate);
   }
 
   return (
@@ -31,8 +27,8 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <div className="flex flex-col justify-center gap-10">
             <div className="flex gap-4 flex-wrap items-center justify-normal">
-              <DatePicker content={'Billing Date'} date={getBillingDate} />
-              <DatePicker content={'Due Date'} date='' />
+              <DatePicker content={'Billing Date'} date={billingDate} setDate={setBillingDate} />
+              <DatePicker content={'Due Date'} date={dueDate} setDate={setDueDate} />
             </div>
             <div className="flex flex-wrap items-center justify-evenly">
               <div className="flex flex-col gap-4 flex-wrap">
