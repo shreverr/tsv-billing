@@ -60,6 +60,7 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
 
   return (
     <div>
+      {/* <Separator /> */}
       <Table>
         <TableHeader>
           <TableRow>
@@ -122,6 +123,7 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
       </Table>
       <Separator />
       <Button className="w-full" variant="ghost" type="button" onClick={addRow}>Add Row</Button>
+      <Separator />
     </div>
   )
 }
