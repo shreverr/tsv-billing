@@ -1,4 +1,3 @@
-import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
 export async function POST(req: Request) {
@@ -8,7 +7,7 @@ export async function POST(req: Request) {
     });
 
     const page = await browser.newPage();
-    await page.setContent('<h1>Hello, Puppeteer!</h1>');
+    await page.goto('file://C:/Data/Projects/tsv-invoice-gen/src/app/invoice.html')
     await page.pdf({ path: 'example.pdf', format: 'A4' });
     await browser.close();
 
