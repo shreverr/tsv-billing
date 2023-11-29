@@ -58,7 +58,7 @@ export default function Home() {
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
 
-    if (billingDate !== undefined && dueDate !== undefined ) {
+    if (billingDate !== undefined && dueDate !== undefined) {
       const billingDateFormatted = CalendarDate.fromDateLocal(billingDate).toFormat('dd/MM/yyyy')
       const dueDateFormatted = CalendarDate.fromDateLocal(dueDate).toFormat('dd/MM/yyyy')
 
@@ -68,6 +68,22 @@ export default function Home() {
         billedToData,
         fromData,
         tableData,
+      }
+
+      console.log('onSubmit: ',invoiceData);
+      
+      try{
+        fetch('http://localhost:4000/api/v1/generate-invoice', {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "cors",
+          method: 'POST',
+          body: JSON.stringify(invoiceData),
+        })
+
+      } catch (error) {
+        console.log(error);
       }
     }
   }

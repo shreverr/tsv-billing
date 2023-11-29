@@ -1,5 +1,5 @@
 'use client'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import {
   Table,
   TableBody,
@@ -38,9 +38,9 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
     }
   }
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, } = event.target;
-    const dataKey = Number(event.target.getAttribute('data-key'));
+  const handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    const { name, value } = event.currentTarget;
+    const dataKey = Number(event.currentTarget.getAttribute('data-key'));
 
     setRows((prevFormData) => (
       prevFormData.map((row, index) => {
@@ -54,7 +54,6 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
         }
       })
     ));
-
     getTableData(rows)
   }
 
@@ -67,7 +66,7 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
             <TableHead className="">Description</TableHead>
             <TableHead>Plan Type</TableHead>
             <TableHead className="sm:w-[200px]">Quantity</TableHead>
-            <TableHead className="sm:w-[200px] text-right">Amount</TableHead>
+            <TableHead className="sm:w-[200px] text-right">Net Amount</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -111,7 +110,7 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
                       className="w-full text-right"
                       name='amount'
                       type="text"
-                      placeholder="Amount"
+                      placeholder="Net Amount"
                       value={rows[index].amount}
                       onChange={handleInputChange} />
                   </TableCell>
