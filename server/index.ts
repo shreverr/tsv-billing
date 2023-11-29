@@ -27,13 +27,13 @@ app.post('/api/v1/generate-invoice', async (req, res) => {
   try {
     console.log(path.dirname(__dirname) + '/invoice-template/index.html')
     
-    // const browser = await puppeteer.launch({
-    //   headless: false
-    // });
-    // const page = await browser.newPage();
-    // await page.goto('file://C:/Data/Projects/tsv-invoice-gen/server/invoice-template/index.html')
-    // await page.pdf({ path: '/pdf/example.pdf', format: 'A4', printBackground: true });
-    // await browser.close();
+    const browser = await puppeteer.launch({
+      headless: 'new'
+    });
+    const page = await browser.newPage();
+    await page.goto('file://C:/Data/Projects/tsv-invoice-gen/server/invoice-template/index.html')
+    await page.pdf({ path: 'example.pdf', format: 'A4', printBackground: true });
+    await browser.close();
     return res.json({ message: "Heres your PDF!." });
   } catch (error) {
     console.log(error)
