@@ -30,6 +30,7 @@ export async function POST(req: Request) {
     let error_response = {
       status: "error",
       message: 'something went wrong',
+      error: error,
     };
 
     console.log(error);
