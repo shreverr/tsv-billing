@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 import generateInvoice from "@/features/invoice-generator";
 import fs from "fs";
 import path from "path";
+// import pdfFile from "@/views/templates/pdf-template.ejs";
 
 export async function POST(req: Request) {
   try {
@@ -39,7 +40,7 @@ export async function POST(req: Request) {
       error: error,
     };
 
-    console.log(error);
+    console.log(`error at reading generated file`, error);
 
     return new NextResponse(JSON.stringify(error_response), {
       status: 500,

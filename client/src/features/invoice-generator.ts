@@ -16,7 +16,7 @@ const generateInvoice = async (data: any) => {
       await page.pdf({ path: 'pdf/example.pdf', format: 'A4', printBackground: true });
       await browser.close();
   } catch (error) {
-    console.log(error)
+    console.log(`error at reading generating file`, error);
   }
 }
 
