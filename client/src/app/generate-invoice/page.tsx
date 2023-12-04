@@ -69,8 +69,10 @@ export default function Home() {
         fromData,
         tableData,
       }
-      
-      try{
+
+      try {
+        console.log('req sending');
+
         fetch('/api/v1/generate-invoice', {
           headers: {
             "Content-Type": "application/json",
@@ -78,8 +80,9 @@ export default function Home() {
           mode: "cors",
           method: 'POST',
           body: JSON.stringify(invoiceData),
+        }).then((res) => {
+          console.log('req sent');
         })
-
       } catch (error) {
         console.log(error);
       }
