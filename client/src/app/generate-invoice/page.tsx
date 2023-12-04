@@ -69,11 +69,9 @@ export default function Home() {
         fromData,
         tableData,
       }
-
-      console.log('onSubmit: ',invoiceData);
       
       try{
-        fetch('http://localhost:4000/api/v1/generate-invoice', {
+        fetch('/api/v1/generate-invoice', {
           headers: {
             "Content-Type": "application/json",
           },
@@ -126,7 +124,7 @@ export default function Home() {
               </div>
             </div>
             <InputTable getTableData={getTableData} />
-            <Button className="w-full sm:w-[200px] self-end" type='submit'>Generate Invoice</Button>
+            <Button className="w-full sm:w-[200px] self-end" type='submit' >Generate Invoice</Button>
           </div>
         </form>
       </div>

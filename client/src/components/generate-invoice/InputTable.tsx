@@ -24,6 +24,10 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
     amount: '',
   }])
 
+  useEffect(() => {
+    getTableData(rows)
+  }, [rows])
+
   const addRow = () => {
     const lastRow = rows[rows.length - 1]
 
@@ -54,7 +58,6 @@ const InputTable: FC<InputTableProps> = ({ getTableData }) => {
         }
       })
     ));
-    getTableData(rows)
   }
 
   return (
