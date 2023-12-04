@@ -71,8 +71,6 @@ export default function Home() {
       }
 
       try {
-        console.log('req sending');
-
         fetch('/api/v1/generate-invoice', {
           headers: {
             "Content-Type": "application/json",
@@ -80,9 +78,15 @@ export default function Home() {
           mode: "cors",
           method: 'POST',
           body: JSON.stringify(invoiceData),
-        }).then((res) => {
-          console.log('req sent');
-        })
+        }).then((res) => { return res.blob(); })
+          .then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'invoice.pdf';
+            link.click();
+            window.URL.revokeObjectURL(url);
+          })
       } catch (error) {
         console.log(error);
       }

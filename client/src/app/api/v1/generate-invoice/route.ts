@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { nanoid } from 'nanoid'
 import generateInvoice from "@/features/invoice-generator";
+import fs from "fs";
+import path from "path";
 
 export async function POST(req: Request) {
   try {
@@ -20,12 +22,16 @@ export async function POST(req: Request) {
     }
 
     await generateInvoice(data)
+    const file = fs.readFileSync((path.dirname(process.cwd()) + '/client/pdf/example.pdf').split(path.sep).join(path.posix.sep));
 
-    return new NextResponse(JSON.stringify({ message: 'success' }), {
+    const headers = new Headers();
+    headers.append('Content-Disposition', 'attachment; filename="invoice.pdf"');
+    headers.append('Content-Type', 'application/text');
+
+    return new NextResponse(file, {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: headers,
     });
-
   } catch (error: any) {
     let error_response = {
       status: "error",
