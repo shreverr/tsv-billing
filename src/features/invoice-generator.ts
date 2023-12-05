@@ -11,10 +11,11 @@ const generateInvoice = async (data: any) => {
     const invoiceTemplatePath = (
       process.cwd() + '/public/views/templates/pdf-template.ejs'
     ).split(path.sep).join(path.posix.sep)
+   
     const browser = await puppeteer.launch({
       args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
+      // defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
       headless: chromium.headless,
     });
     
