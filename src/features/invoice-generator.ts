@@ -9,7 +9,8 @@ const generateInvoice = async (data: any) => {
     console.log(process.cwd());
 
     const invoiceTemplatePath = (
-      process.cwd() + '/public/views/templates/pdf-template.ejs'
+      // process.cwd() + '/public/views/templates/pdf-template.ejs'
+      process.cwd() + '/.next/views/templates/pdf-template.ejs'
     ).split(path.sep).join(path.posix.sep)
    
     const browser = await puppeteer.launch({
