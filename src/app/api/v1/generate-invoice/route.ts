@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid'
 import generateInvoice from "@/features/invoice-generator";
 import fs from "fs";
 import path from "path";
-// import pdfFile from "@/views/templates/pdf-template.ejs";
 
 export async function POST(req: Request) {
   try {
@@ -23,7 +22,7 @@ export async function POST(req: Request) {
     }
 
     await generateInvoice(data)
-    const file = fs.readFileSync((path.dirname(process.cwd()) + '/client/pdf/example.pdf').split(path.sep).join(path.posix.sep));
+    const file = fs.readFileSync((process.cwd() + '/pdf/example.pdf').split(path.sep).join(path.posix.sep));
 
     const headers = new Headers();
     headers.append('Content-Disposition', 'attachment; filename="invoice.pdf"');

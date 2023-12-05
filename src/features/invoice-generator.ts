@@ -4,8 +4,10 @@ import ejs from 'ejs'
 
 const generateInvoice = async (data: any) => {
   try {
+    console.log(process.cwd());
+    
     const invoiceTemplatePath = (
-      path.dirname(process.cwd()) + '/client/src/views/templates/pdf-template.ejs'
+      process.cwd() + '/public/views/templates/pdf-template.ejs'
       ).split(path.sep).join(path.posix.sep)
   
       const browser = await puppeteer.launch({
@@ -16,7 +18,7 @@ const generateInvoice = async (data: any) => {
       await page.pdf({ path: 'pdf/example.pdf', format: 'A4', printBackground: true });
       await browser.close();
   } catch (error) {
-    console.log(`error at reading generating file`, error);
+    console.log(`error at generating file`, error);
   }
 }
 
